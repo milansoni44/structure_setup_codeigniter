@@ -26,7 +26,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading">Department List</div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/departments">
 			    		<thead>
 							<tr>
 								<th>Name</th>
@@ -37,19 +37,19 @@
 						<tbody>
 							
 							<?php 
-								if(!empty($departments)):
-									foreach($departments as $dept):
-										echo "<tr>
-											<td>{$dept['name']}</td>
-											<td>{$dept['description']}</td>
-											<td>
-												<a class='green dept_edit' data-id='{$dept['id']}' data-name='{$dept['name']}' data-description='{$dept['description']}' href='#'>
-												<i class='ace-icon fa fa-pencil bigger-130'></i>
-												</a>
-											</td>
-										</tr>";
-									endforeach;
-								endif;
+								// if(!empty($departments)):
+								// 	foreach($departments as $dept):
+								// 		echo "<tr>
+								// 			<td>{$dept['name']}</td>
+								// 			<td>{$dept['description']}</td>
+								// 			<td>
+								// 				<a class='green dept_edit' data-id='{$dept['id']}' data-name='{$dept['name']}' data-description='{$dept['description']}' href='#'>
+								// 				<i class='ace-icon fa fa-pencil bigger-130'></i>
+								// 				</a>
+								// 			</td>
+								// 		</tr>";
+								// 	endforeach;
+								// endif;
 							?>
 						</tbody>
 			    	</table>
@@ -71,7 +71,29 @@
 	var dept_id = $("#dept_id");
 
 	var oTable = table
-		.DataTable()
+		.DataTable({
+			"processing": true,
+			"serverSide": true,
+			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			"initComplete": function(settings, json) {
+				//
+			},
+			"ajax":{
+                "url": table.data('url'),
+                "dataType": "json",
+                "type": "POST",
+            },
+            "columns": [
+                { "data": "name" },
+                { "data": "description" },
+                {
+                	"data": null,
+                	"render": function ( data, type, row, meta ) {
+				      return "<a class='green dept_edit' href='#' data-id='"+data.id+"' data-name='"+data.name+"' data-description='"+data.description+"'><i class='ace-icon fa fa-pencil bigger-130'></i></a>";
+				    }
+            	}
+            ],
+		})
 		.on('click', '.dept_edit',function(e){
 			e.preventDefault();
 			var $this = $(this);

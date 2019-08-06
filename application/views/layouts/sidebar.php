@@ -80,6 +80,14 @@
 
 					<b class="arrow"></b>
 				</li>
+				<li class="equipment_tag_li">
+					<a href="<?php echo $this->baseUrl; ?>index.php/equipment_tags">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Equipment Tags
+					</a>
+
+					<b class="arrow"></b>
+				</li>
 			</ul>
 		</li>
 	</ul><!-- /.nav-list -->

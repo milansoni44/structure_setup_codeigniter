@@ -8,10 +8,16 @@ class Departments extends MY_Controller {
 
 	public function index()
 	{
-		// if($this->input->is_ajax_request()){
+		if($this->input->is_ajax_request()){
+			$colsArr = array(
+				'name',
+				'description',
+				'action'
+			);
 
-		// }
-		$this->data['departments'] = $this->model->get("departments");
+			$query = $this->model->common_select('departments.*')->common_get('departments');
+			echo $this->model->common_datatable($colsArr, $query);die;
+		}
 		$this->data['page_title'] = 'Department';
 		//$this->data['sub_page_title'] = 'Overview &amp; stats';
 		$this->load_content('department/department_list', $this->data);

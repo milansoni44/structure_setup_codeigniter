@@ -39,12 +39,12 @@ class MY_Model extends CI_Model{
 		}
 	}
 
-	public function maintenance_select($fields){
+	public function common_select($fields){
 		$this->fields = $fields;
 		return $this;
 	}
 
-	public function maintenance_join($joinedTable, $joinClause, $joinType = NULL){
+	public function common_join($joinedTable, $joinClause, $joinType = NULL){
 		$this->joinedTable[] = $joinedTable;
 		$this->joinClause[] = $joinClause;
 		if($joinType){
@@ -53,7 +53,7 @@ class MY_Model extends CI_Model{
 		return $this;
 	}
 
-	public function maintenance_get($table){
+	public function common_get($table){
 		$this->table = $table;
 		$str = "";
 		if(is_array($this->joinedTable) && !empty($this->joinedTable)){
@@ -62,10 +62,78 @@ class MY_Model extends CI_Model{
 			}
 		}
 
-		return $this->db->query("SELECT 
+		return "SELECT 
 					$this->fields
 				FROM $this->table
 				$str
-		")->result_array();
+		";
+	}
+
+	/*
+		Developer: Milan Soni
+		Date: 06-08-2019
+		Description: common data table function which is used for generate formal datatable
+	*/
+	public function common_datatable($columns = array(), $query, $whereClause = NULL){
+		$request= $_REQUEST;
+		$where = " WHERE 1=1 ";
+		$where .= ($whereClause) ? " AND $whereClause ":"";
+        $cols = $columns;
+        $sql = $query;
+		$rs = $this->db->query($sql.$where);
+		$records_total = $this->db->affected_rows();
+		$records_filtered = $records_total;
+		
+		if( !empty($request['search']['value']) ) {
+
+			$search_value = $this->db->escape_like_str($request['search']['value']);
+			$where .= "AND ( ";
+			if(is_array($columns)){
+				array_pop($columns);	// remove last index from the array
+				$intCount = COUNT($columns);
+				$intIteration = 1;
+				foreach($columns as $col):
+					if($intIteration == $intCount){
+						$where .="$col LIKE '%".$search_value."%' ";
+					}else{
+						$where .="$col LIKE '%".$search_value."%' OR ";
+					}
+					$intIteration += 1;
+				endforeach;
+			}
+            $where .= " )";
+		}
+		$sql .= $where;
+		if( count($request['order']) > 0 ) {
+			
+			$temp = array();
+			
+			foreach($request['order'] as $order){
+				$temp[]= "".$columns[$order['column']]." ".$order['dir'];
+			}
+
+			$sql .= " ORDER BY ";
+			$sql .= implode(",",$temp);
+		}
+		
+		$c = $this->db->query($sql);
+		$records_filtered = $this->db->affected_rows();
+		
+		$sql .= " LIMIT ".$request['start']." ,".$request['length'];
+
+		$rs = $this->db->query($sql);
+		$data =  $rs->result_array();
+		$CI =& get_instance();
+		foreach($data as $k=>$val){
+			$data[$k]['link'] = $val;
+		}
+
+		$json_data = array(
+			"draw"            => intval( $request['draw'] ),
+			"recordsTotal"    => intval( $records_total ),
+			"recordsFiltered" => intval( $records_filtered ),
+			"data"            => $data,
+		);
+		return json_encode($json_data);
 	}
 }

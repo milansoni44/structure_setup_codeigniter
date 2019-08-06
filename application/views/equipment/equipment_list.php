@@ -2,13 +2,13 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading"><?php echo $page_title; ?> </div>
+			    <div class="panel-heading">Equipment </div>
 			    <div class="panel-body">
-			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/plants/save" id="plantFrm" method="post">
-			    		<input type="hidden" name="plant_id" id="plant_id"/>
+			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/equipments/save" id="equipmentFrm" method="post">
+			    		<input type="hidden" name="equipment_id" id="equipment_id"/>
 					 	<div class="form-group">
-					    	<label for="plant_name">Plant Name:</label>
-					    	<input type="text" class="form-control" name="name" id="plant_name" required />
+					    	<label for="dept_name">Equipment Name:</label>
+					    	<input type="text" class="form-control" name="name" id="equipment_name" required />
 					  	</div>
 					  	<div class="form-group">
 					    	<label for="description">Description:</label>
@@ -24,9 +24,9 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Plant List</div>
+			    <div class="panel-heading">Equipment List</div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/plants/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipments/">
 			    		<thead>
 							<tr>
 								<th>Name</th>
@@ -37,19 +37,19 @@
 						<tbody>
 							
 							<?php 
-								// if(!empty($plants)):
-								// 	foreach($plants as $plant):
-								// 		echo "<tr>
-								// 			<td>{$plant['name']}</td>
-								// 			<td>{$plant['description']}</td>
-								// 			<td>
-								// 				<a class='green plant_edit' data-id='{$plant['id']}' data-name='{$plant['name']}' data-description='{$plant['description']}' href='#'>
-								// 				<i class='ace-icon fa fa-pencil bigger-130'></i>
-								// 				</a>
-								// 			</td>
-								// 		</tr>";
-								// 	endforeach;
-								// endif;
+								/*if(!empty($equipments)):
+									foreach($equipments as $equipment):
+										echo "<tr>
+											<td>{$equipment['name']}</td>
+											<td>{$equipment['description']}</td>
+											<td>
+												<a class='green equipment_edit' data-id='{$equipment['id']}' data-name='{$equipment['name']}' data-description='{$equipment['description']}' href='#'>
+												<i class='ace-icon fa fa-pencil bigger-130'></i>
+												</a>
+											</td>
+										</tr>";
+									endforeach;
+								endif;*/
 							?>
 						</tbody>
 			    	</table>
@@ -62,14 +62,14 @@
 @script
 <script type="text/javascript">
 	// to active the sidebar
-    $('.nav .nav-list').activeSidebar('.plant_li');
+    $('.nav .nav-list').activeSidebar('.equipment_li');
 
-	var plantFrm = $("#plantFrm");
+	var equipmentFrm = $("#equipmentFrm");
 	var table = $("#dynamic-table");
-	var plant_name = $("#plant_name");
+	var equipment_name = $("#equipment_name");
 	var description = $("#description");
-	var plant_id = $("#plant_id");
-	console.log(table.data('url'));
+	var equipment_id = $("#equipment_id");
+
 	var oTable = table
 		.DataTable({
 			"processing": true,
@@ -89,22 +89,22 @@
                 {
                 	"data": null,
                 	"render": function ( data, type, row, meta ) {
-				      return "<a class='green plant_edit' href='#' data-id='"+data.id+"' data-name='"+data.name+"' data-description='"+data.description+"'><i class='ace-icon fa fa-pencil bigger-130'></i></a>";
+				      return "<a class='green equipment_edit' href='#' data-id='"+data.id+"' data-name='"+data.name+"' data-description='"+data.description+"'><i class='ace-icon fa fa-pencil bigger-130'></i></a>";
 				    }
             	}
             ],
 		})
-		.on('click', '.plant_edit',function(e){
+		.on('click', '.equipment_edit',function(e){
 			e.preventDefault();
 			var $this = $(this);
 			reset_form();
-			plant_name.val($this.data('name'));
+			equipment_name.val($this.data('name'));
 			description.val($this.data('description'));
-			plant_id.val($this.data('id'));
+			equipment_id.val($this.data('id'));
 		});
 
 	// submit form event
-	plantFrm.on('submit', function(e){
+	equipmentFrm.on('submit', function(e){
 		e.preventDefault();
 		var data = $(this).serialize();
 		$.ajax({
@@ -120,8 +120,8 @@
 	});
 
 	function reset_form(){
-		plantFrm.trigger("reset");
-		plant_id.val("");
+		equipmentFrm.trigger("reset");
+		equipment_id.val("");
 	}
 </script>
 @endscript

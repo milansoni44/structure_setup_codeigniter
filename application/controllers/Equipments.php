@@ -11,10 +11,55 @@
  	 	 parent::__construct();
  	 }
 
- 	 public function index(){
- 	 	if($this->input->is_ajax_request()){
+ 	 public function index()
+	{
+		if($this->input->is_ajax_request()){
+			$colsArr = array(
+				'name',
+				'description',
+				'action'
+			);
+			$query = $this->model->common_select('equipments.*')->common_get('equipments');
+			echo $this->model->common_datatable($colsArr, $query);die;
+		}
+		$this->data['page_title'] = 'Equipment';
+		//$this->data['sub_page_title'] = 'Overview &amp; stats';
+		$this->load_content('equipment/equipment_list', $this->data);
+	}
 
- 	 	}
- 	 	$this->load_content('equipment/equipment_list', $this->data);
- 	 }
+	public function save(){
+		$response = array(
+			'error' =>true
+		);
+		if($this->input->is_ajax_request()){
+			if($this->input->server("REQUEST_METHOD") == "POST"){
+				$id = $this->input->post('equipment_id');
+				$data = array(
+					'name'			=> $this->input->post('name'),
+					'description'	=> $this->input->post('description')
+				);
+				if($this->model->insert_update($data, 'equipments', $id, 'id')){
+					$response['error'] = false;
+					$type = 'message';
+					$msg = '';
+					if($id){
+						$msg = 'Equipment updated successfully.';
+					}else{
+						$msg = 'Equipment inserted successfully.';
+					}
+					$response['message'] = $msg;
+				}
+			}else{
+				$msg = 'Some error occured. Try again later.';
+				$type = 'error';
+				$response['message'] = $msg;
+			}
+		}else{
+			$msg = 'No direct script access allowed.';
+			$type = 'error';
+			$response['message'] = $msg;
+		}
+		$this->flash($type, $msg);
+		echo json_encode($response);die;
+	}
  }

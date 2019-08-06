@@ -25,7 +25,7 @@
 		<![endif]-->
 		<link rel="stylesheet" href="<?php echo $this->baseUrl; ?>assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="<?php echo $this->baseUrl; ?>assets/css/ace-rtl.min.css" />
-
+		<link rel="stylesheet" href="<?php echo $this->baseUrl; ?>assets/css/maintenance.css" />
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -40,7 +40,7 @@
 		<!--[if lte IE 8]>
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+		<![endif]-->		
 	</head>
 
 	<body class="no-skin" data-loader="<?php echo $this->baseUrl; ?>assets/images/15.gif">
@@ -373,7 +373,7 @@
 			<div class="main-content">
 				<div class="main-content-inner">
 					
-					<?php include_once('breadcrumb.php'); ?>
+					<?php echo generateBreadcrumb(); ?>
 
 					<div class="page-content">
 						<!--<div class="ace-settings-container" id="ace-settings-container">

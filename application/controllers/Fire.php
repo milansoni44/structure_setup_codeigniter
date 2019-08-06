@@ -9,6 +9,7 @@ class Fire extends CI_Controller {
 	}
 
 	public function create( $file ){
+		$file = ucfirst(str_replace(' ', '', $file));
 		if(file_exists(APPPATH.'controllers'.DIRECTORY_SEPARATOR.$file.'.php')){
 			echo 'File already exist.';
 		}else{
