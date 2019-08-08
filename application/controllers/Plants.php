@@ -22,9 +22,7 @@
 			$query = $this->model->common_select('plants.*')->common_get('plants');
 			echo $this->model->common_datatable($colsArr, $query);die;
 		}
-		//$this->data['plants'] = $this->model->get("plants");
 		$this->data['page_title'] = 'Plant';
-		//$this->data['sub_page_title'] = 'Overview &amp; stats';
 		$this->load_content('plant/plant_list', $this->data);
 	}
 

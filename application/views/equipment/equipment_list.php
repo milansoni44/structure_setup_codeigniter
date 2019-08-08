@@ -26,7 +26,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading">Equipment List</div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipments/">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipments/index">
 			    		<thead>
 							<tr>
 								<th>Name</th>

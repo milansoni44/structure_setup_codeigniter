@@ -83,3 +83,7 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+// maintenance application constants
+defined('INACTIVITY_TIMER_START_TIME') 	OR define('INACTIVITY_TIMER_START_TIME', 240);
+defined('INACTIVITY_TIMER_END_TIME')	OR define('INACTIVITY_TIMER_END_TIME', 300);

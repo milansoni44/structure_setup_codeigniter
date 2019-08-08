@@ -15,3 +15,9 @@
 	<?php echo $this->session->flashdata('error'); ?>
 </div>
 <?php endif; ?>
+
+<div id="inactivity_logout" style="display:none;">
+	<div class="alert alert-block alert-danger">
+		You are logout after <span id="timers"></span>
+	</div>
+</div>

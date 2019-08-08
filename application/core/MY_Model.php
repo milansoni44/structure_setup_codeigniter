@@ -16,10 +16,12 @@ class MY_Model extends CI_Model{
 		$this->db->trans_start();
 		if($id){
 			$data['updated_at'] = date('Y-m-d H:i:s');
+			$data['updated_by'] = USER_ID;
 			$this->db->where($whereCol, $id);
 			$this->db->update($table, $data);
 		}else{
 			$data['created_at'] = date('Y-m-d H:i:s');
+			$data['created_by'] = USER_ID;
 			$this->db->insert($table, $data);
 			$id = $this->db->insert_id();
 		}

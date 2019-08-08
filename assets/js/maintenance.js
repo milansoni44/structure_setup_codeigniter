@@ -41,3 +41,42 @@ $.fn.activeSidebar = function(el_class){
 		$(el_class).addClass('active').parents('li').addClass('active open');
 	}
 }
+
+setInterval(function(){ 
+	var url = $('body').data('check_activity');
+	$.ajax({
+		url: url,
+		type: 'get',
+		dataType: 'json',
+		success: function(result){
+			if(!result.redirect_url){
+				if(result.start_timer === true){
+					var oneMin = 60*1;
+					var display = document.querySelector('#timers');
+					$("#inactivity_logout").css('display', 'block');
+					startTimer(oneMin, display);
+				}
+			}else{
+				window.location.href = result.redirect_url;
+			}			
+		}
+	});
+	//$("#inactivity_logout").css('display', 'block');
+}, 15000);
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}

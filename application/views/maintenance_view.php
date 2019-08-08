@@ -20,7 +20,7 @@
             <h1>Site is temporarily unavailable.</h1>
             <p>Scheduled maintenance is currently in progress. Please check back soon.</p>
             <p>We apologize for any inconvenience.</p>
-            <p id="signature">&mdash; <a href="mailto:[Email]">Maintenance Application</a></p>
+            <p id="signature">&mdash; <a href="<?php echo $this->baseUrl; ?>index.php/departments">Maintenance Application</a></p>
         </article>
     </body>
 </html>

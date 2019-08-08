@@ -72,6 +72,14 @@
 
 					<b class="arrow"></b>
 				</li>
+				<li class="equipment_type_li">
+					<a href="<?php echo $this->baseUrl; ?>index.php/equipment_types">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Equipment Types
+					</a>
+
+					<b class="arrow"></b>
+				</li>
 				<li class="equipment_li">
 					<a href="<?php echo $this->baseUrl; ?>index.php/equipments">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -84,6 +92,14 @@
 					<a href="<?php echo $this->baseUrl; ?>index.php/equipment_tags">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Equipment Tags
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="import_li">
+					<a href="<?php echo $this->baseUrl; ?>index.php/imports/import_equipments">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Imports
 					</a>
 
 					<b class="arrow"></b>

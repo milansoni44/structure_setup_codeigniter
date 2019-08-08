@@ -29,4 +29,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
-/assets/ace-master/*
+/vendor/
+/assets/ace-master/
+/user_guide/
+/CodeIgniter-3.1.10 (1).zip
+

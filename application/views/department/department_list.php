@@ -26,7 +26,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading">Department List</div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/departments">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/departments/index">
 			    		<thead>
 							<tr>
 								<th>Name</th>
@@ -81,6 +81,7 @@
 			"ajax":{
                 "url": table.data('url'),
                 "dataType": "json",
+                'cache': false,
                 "type": "POST",
             },
             "columns": [

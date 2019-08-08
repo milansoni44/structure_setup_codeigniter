@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Departments extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
+		// echo "<pre>"; print_r($this->session->all_userdata());die;
 	}
 
 	public function index()
