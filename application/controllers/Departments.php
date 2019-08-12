@@ -59,4 +59,19 @@ class Departments extends MY_Controller {
 		$this->flash($type, $msg);
 		echo json_encode($response);die;
 	}
+
+	public function dept_export(){
+		$query = $this->model->common_select('departments.name AS department_name, description')->common_get('departments');
+
+		$resultData = $this->db->query($query)->result_array();
+		$headerColumns = implode(',', array_keys($resultData[0]));
+		$filename = 'departments-'.time().'.xlsx';
+		$title = 'Department List';
+		$sheetTitle = 'Department List';
+		$this->export( $filename, $title, $sheetTitle, $headerColumns,  $resultData );
+	}
+
+	public function sample(){
+		$this->generate_sample_qr();
+	}
 }

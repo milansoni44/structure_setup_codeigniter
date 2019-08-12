@@ -4,7 +4,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading"><?php echo $page_title; ?> </div>
 			    <div class="panel-body">
-			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/equipment_types/save" id="eqTypeFrm" method="post">
+			    	<form data-action="<?php echo $this->baseUrl; ?>equipment_types/save" id="eqTypeFrm" method="post">
 			    		<input type="hidden" name="equipment_type_id" id="equipment_type_id"/>
 					 	<div class="form-group">
 					    	<label for="dept_name">Equipment Type:</label>
@@ -24,9 +24,12 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Equipment Type List</div>
+			    <div class="panel-heading">
+			    	Equipment Type List
+			    	<span class="pull-right"><a class="btn btn-info btn-sm" style="margin-top: -8px;" href="<?php echo $this->baseUrl; ?>equipment_types/eq_type_export">Export</a></span>
+			    </div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipment_types/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>equipment_types/index">
 			    		<thead>
 							<tr>
 								<th>Equipment Type</th>

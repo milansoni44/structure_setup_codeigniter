@@ -35,7 +35,7 @@
  			if($username && $password){
  				$query = $this->db->select("*")
  								  ->from('users')
- 								  ->where('username', $username)
+ 								  ->where("(users.email = '{$username}' OR users.username = '{$username}')")
  								  ->where('password', $password)
  								  ->get()
  								  ->row_array();

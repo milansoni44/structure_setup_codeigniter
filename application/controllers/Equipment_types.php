@@ -63,4 +63,15 @@
 		$this->flash($type, $msg);
 		echo json_encode($response);die;
 	}
+
+	public function eq_type_export(){
+		$query = $this->model->common_select('equipment_types.name as equipment_type, description')->common_get('equipment_types');
+
+		$resultData = $this->db->query($query)->result_array();
+		$headerColumns = implode(',', array_keys($resultData[0]));
+		$filename = 'equipment_type-'.time().'.xlsx';
+		$title = 'Equipment Type List';
+		$sheetTitle = 'Equipment Type List';
+		$this->export( $filename, $title, $sheetTitle, $headerColumns,  $resultData );
+	}
  }

@@ -57,7 +57,7 @@
 
 			<ul class="submenu">
 				<li class="department_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/departments">
+					<a href="<?php echo $this->baseUrl; ?>departments">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Departments
 					</a>
@@ -65,7 +65,7 @@
 					<b class="arrow"></b>
 				</li>
 				<li class="plant_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/plants">
+					<a href="<?php echo $this->baseUrl; ?>plants">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Plants
 					</a>
@@ -73,7 +73,7 @@
 					<b class="arrow"></b>
 				</li>
 				<li class="equipment_type_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/equipment_types">
+					<a href="<?php echo $this->baseUrl; ?>equipment_types">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Equipment Types
 					</a>
@@ -81,7 +81,7 @@
 					<b class="arrow"></b>
 				</li>
 				<li class="equipment_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/equipments">
+					<a href="<?php echo $this->baseUrl; ?>equipments">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Equipments
 					</a>
@@ -89,20 +89,42 @@
 					<b class="arrow"></b>
 				</li>
 				<li class="equipment_tag_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/equipment_tags">
+					<a href="<?php echo $this->baseUrl; ?>equipment_tags">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Equipment Tags
 					</a>
 
 					<b class="arrow"></b>
 				</li>
-				<li class="import_li">
-					<a href="<?php echo $this->baseUrl; ?>index.php/imports/import_equipments">
+				<li class="">
+					<a href="#" class="dropdown-toggle">
 						<i class="menu-icon fa fa-caret-right"></i>
+
 						Imports
+						<b class="arrow fa fa-angle-down"></b>
 					</a>
 
 					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="equipment_tags_import_li">
+							<a href="<?php echo $this->baseUrl; ?>imports/import_equipment_tags">
+								<i class="menu-icon fa fa-leaf green"></i>
+								Equipment Tags
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="equipment_import_li">
+							<a href="<?php echo $this->baseUrl; ?>imports/import_equipments">
+								<i class="menu-icon fa fa-leaf green"></i>
+								Equipments
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</li>

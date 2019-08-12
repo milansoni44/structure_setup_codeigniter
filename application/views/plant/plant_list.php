@@ -4,7 +4,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading"><?php echo $page_title; ?> </div>
 			    <div class="panel-body">
-			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/plants/save" id="plantFrm" method="post">
+			    	<form data-action="<?php echo $this->baseUrl; ?>plants/save" id="plantFrm" method="post">
 			    		<input type="hidden" name="plant_id" id="plant_id"/>
 					 	<div class="form-group">
 					    	<label for="plant_name">Plant Name:</label>
@@ -24,9 +24,12 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Plant List</div>
+			    <div class="panel-heading">
+			    	Plant List
+			    	<span class="pull-right"><a class="btn btn-info btn-sm" style="margin-top: -8px;" href="<?php echo $this->baseUrl; ?>plants/pl_export">Export</a></span>
+			    </div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/plants/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>plants/index">
 			    		<thead>
 							<tr>
 								<th>Name</th>

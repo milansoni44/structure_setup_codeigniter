@@ -4,7 +4,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading">Equipment </div>
 			    <div class="panel-body">
-			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/equipments/save" id="equipmentFrm" method="post">
+			    	<form data-action="<?php echo $this->baseUrl; ?>equipments/save" id="equipmentFrm" method="post">
 			    		<input type="hidden" name="equipment_id" id="equipment_id"/>
 					 	<div class="form-group">
 					    	<label for="dept_name">Equipment Name:</label>
@@ -24,9 +24,12 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Equipment List</div>
+			    <div class="panel-heading">
+			    	Equipment List
+			    	<span class="pull-right"><a class="btn btn-info btn-sm" style="margin-top: -8px;" href="<?php echo $this->baseUrl; ?>equipments/eq_export">Export</a></span>
+		    	</div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipments/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>equipments/index">
 			    		<thead>
 							<tr>
 								<th>Name</th>

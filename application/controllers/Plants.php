@@ -61,4 +61,15 @@
 		$this->flash($type, $msg);
 		echo json_encode($response);die;
 	}
+
+	public function pl_export(){
+		$query = $this->model->common_select('plants.name as plant_name, description')->common_get('plants');
+
+		$resultData = $this->db->query($query)->result_array();
+		$headerColumns = implode(',', array_keys($resultData[0]));
+		$filename = 'plants-'.time().'.xlsx';
+		$title = 'Plant List';
+		$sheetTitle = 'Plant List';
+		$this->export( $filename, $title, $sheetTitle, $headerColumns,  $resultData );
+	}
  }

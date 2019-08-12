@@ -2,35 +2,24 @@
 	<div class="col-sm-12">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Equipment List</div>
+			    <div class="panel-heading">
+			    	Equipment List
+			    	<span class="pull-right"><a class="btn btn-info btn-sm" style="margin-top: -8px;" href="<?php echo $this->baseUrl; ?>equipment_tags/eq_tag_export">Export</a></span>
+			    </div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/equipment_tags/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>equipment_tags/index" data-imageUrl="<?php echo $this->assetsUrl; ?>qr/">
 			    		<thead>
 							<tr>
 								<th>Equipment Name</th>
 								<th>Plant Name</th>
 								<th>Tag No</th>
 								<th>Use</th>
+								<th>QR</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>							
-							<?php 
-								/*if(!empty($equipment_tags)):
-									foreach($equipment_tags as $equipment_tag):
-										echo "<tr>
-											<td>{$equipment_tag['equipment_name']}</td>
-											<td>{$equipment_tag['plant_name']}</td>
-											<td>{$equipment_tag['tag_no']}</td>
-											<td>
-												<a class='green equipment_tag_edit' href='{$this->baseUrl}index.php/equipment_tags/add_update/{$equipment_tag['id']}'>
-												<i class='ace-icon fa fa-pencil bigger-130'></i>
-												</a>
-											</td>
-										</tr>";
-									endforeach;
-								endif;*/
-							?>
+							
 						</tbody>
 			    	</table>
 			    </div>
@@ -41,7 +30,7 @@
 
 <!-- Float Button-->
 <div class="float_btn_parent">
-    <a class="btn btn-warning btn-sm" title="Add Equipment Tag" href="<?php echo $this->baseUrl.'index.php/equipment_tags/add_update';?>">
+    <a class="btn btn-warning btn-sm" title="Add Equipment Tag" href="<?php echo $this->baseUrl.'equipment_tags/add_update';?>">
         <i class="fa fa-plus"></i>
     </a>
 </div>
@@ -52,6 +41,7 @@
     $('.nav .nav-list').activeSidebar('.equipment_tag_li');
 
 	var table = $("#dynamic-table");
+	var imgUrl = table.attr('data-imageUrl');
 	var oTable = table
 		.DataTable({
 			"processing": true,
@@ -67,10 +57,18 @@
                 { "data": "plant_name" },
                 { "data": "tag_no" },
                 { "data": "equipment_use" },
+                { 
+            		"data": "qr",
+            		"render": function(data, type, row, meta){
+            			console.log(data);
+            			return "<img src='"+imgUrl+data+"' width='100px' />";
+            		},
+            		orderable: false
+            	},
                 {
                 	"data": 'link',
                 	"render": function ( data, type, row, meta ) {
-				      return "<a class='green plant_edit' href='<?php echo $this->baseUrl; ?>index.php/equipment_tags/add_update/"+data.id+"'><i class='ace-icon fa fa-pencil bigger-130'></i></a>";
+				      return "<a class='green plant_edit' href='<?php echo $this->baseUrl; ?>equipment_tags/add_update/"+data.id+"'><i class='ace-icon fa fa-pencil bigger-130'></i></a>";
 				    }
             	}
             ],

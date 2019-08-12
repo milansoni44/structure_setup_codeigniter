@@ -4,7 +4,7 @@
 		  	<div class="panel panel-primary">
 			    <div class="panel-heading">Department </div>
 			    <div class="panel-body">
-			    	<form data-action="<?php echo $this->baseUrl; ?>index.php/departments/save" id="deptFrm" method="post">
+			    	<form data-action="<?php echo $this->baseUrl; ?>departments/save" id="deptFrm" method="post">
 			    		<input type="hidden" name="department_id" id="dept_id"/>
 					 	<div class="form-group">
 					    	<label for="dept_name">Department Name:</label>
@@ -24,9 +24,12 @@
 	<div class="col-sm-6">
 		<div class="panel-group">
 		  	<div class="panel panel-primary">
-			    <div class="panel-heading">Department List</div>
+			    <div class="panel-heading">
+			    	Department List
+			    	<span class="pull-right"><a class="btn btn-info btn-sm" style="margin-top: -8px;" href="<?php echo $this->baseUrl; ?>departments/dept_export">Export</a></span>
+			    </div>
 			    <div class="panel-body">
-			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>index.php/departments/index">
+			    	<table id="dynamic-table" class="table table-striped table-bordered table-hover" data-url="<?php echo $this->baseUrl; ?>departments/index">
 			    		<thead>
 							<tr>
 								<th>Name</th>
